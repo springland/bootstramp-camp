@@ -427,8 +427,88 @@
     </div>
 
 
+
+    <section class="container">
+
+        <table class="table">
+            <thead>
+            <tr>
+                <th>Name</th>
+                <th>Email</th>
+                <th>Action</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr>
+                <td>John</td>
+                <td>john@example.com</td>
+                <td><button class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#editModal"  data-id="1">Edit</button></td>
+            </tr>
+            <tr>
+                <td>Jane</td>
+                <td>jane@example.com</td>
+                <td><button class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#editModal" data-id="2">Edit</button></td>
+            </tr>
+            </tbody>
+        </table>
+
+        <div class="modal fade" id="editModal" tabindex="-1" aria-labelledby="editModalLabel" aria-hidden="true">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="editModalLabel">Edit User</h5>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                    <div class="modal-body">
+                        <form>
+                            <div class="mb-3">
+                                <label for="edit_name" class="form-label">Name</label>
+                                <input type="text" class="form-control" id="edit_name">
+                            </div>
+                            <div class="mb-3">
+                                <label for="edit_email" class="form-label">Email</label>
+                                <input type="email" class="form-control" id="edit_email">
+                            </div>
+                            <input type="hidden" id="editId">
+                        </form>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                        <button type="button" class="btn btn-primary" id="btnSave">Save changes</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+
+    </section>
     <h1> Welcome to BootStrap</h1>
     <button class="btn btn-primary"> test</button>
+    <script>
+
+        var editModal = document.getElementById('editModal')
+        editModal.addEventListener('show.bs.modal', function (event) {
+
+            var button = event.relatedTarget
+
+            var $row = button.closest("tr");
+
+            console.log($row.children[0].innerHTML)
+
+            console.log($row.children[1].innerHTML)
+            var nameInput = document.getElementById("edit_name")
+            nameInput.value = $row.children[0].innerHTML;
+
+            var emailInput = document.getElementById("edit_email");
+            emailInput.value = $row.children[1].innerHTML
+
+        })
+
+    </script>
+
+
+
+
 </body>
 
 </html>
