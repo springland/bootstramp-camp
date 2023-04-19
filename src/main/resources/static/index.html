@@ -435,6 +435,7 @@
             <tr>
                 <th>Name</th>
                 <th>Email</th>
+                <th>Enabled</th>
                 <th>Action</th>
             </tr>
             </thead>
@@ -442,11 +443,13 @@
             <tr>
                 <td>John</td>
                 <td>john@example.com</td>
+                <td><input type="checkbox" onclick="return false;" checked/></td>
                 <td><button class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#editModal"  data-id="1">Edit</button></td>
             </tr>
             <tr>
                 <td>Jane</td>
                 <td>jane@example.com</td>
+                <td><input type="checkbox" onclick="return false;" /></td>
                 <td><button class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#editModal" data-id="2">Edit</button></td>
             </tr>
             </tbody>
@@ -469,6 +472,14 @@
                                 <label for="edit_email" class="form-label">Email</label>
                                 <input type="email" class="form-control" id="edit_email">
                             </div>
+
+                            <div class="form-check">
+                                <input class="form-check-input" type="checkbox" id="edit_enabled">
+                                <label class="form-check-label" for="edit_enabled">
+                                    Enabled
+                                </label>
+                            </div>
+
                             <input type="hidden" id="editId">
                         </form>
                     </div>
@@ -501,6 +512,11 @@
 
             var emailInput = document.getElementById("edit_email");
             emailInput.value = $row.children[1].innerHTML
+
+            var enabled = document.getElementById("edit_enabled");
+            enabled.checked =$row.children[2].firstChild.checked
+
+            console.log($row.children[2].firstChild.checked)
 
         })
 
